@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="inner_page_header">
+    <h4>User Profile Detail</h4>
+  </div>
+  <div *ngIf="currentUser">
+    <div class="form-group row" *ngIf="currentUser.firstName">
+      <label for="fname" class="col-md-2">Firstname : {{currentUser.firstName}}</label>
+    </div>
+
+    <div class="form-group row" *ngIf="currentUser.lastName">
+        <label for="lname" class="col-md-2">Lastname : {{currentUser.lastName}}</label>
+    </div>
+
+    <div class="form-group row" *ngIf="currentUser.username">
+      <label for="username" class="col-md-2">User Name : {{currentUser.username}}</label>
+    </div>
+
+    <div class="form-group row" *ngIf="currentUser.email">
+        <label for="email" class="col-md-2">Email : {{currentUser.email}}</label>
+    </div>
+  </div>
+</div>

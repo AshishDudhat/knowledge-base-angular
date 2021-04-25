@@ -1,0 +1,42 @@
+<div class="container">
+  <h2>Content</h2>
+  <div class="row">
+    <div class="col-12 m-top-10">
+        <button type="submit" class="btn btn-primary login-btn mr-2" routerLink="/app/add/content">Add Content</button>
+    </div>
+    <div class="col-6 m-top-10">
+        <label for="exampleFormControlSelect1">Select Category</label>
+        <select class="form-control" id="exampleFormControlSelect1" (change)="onChange($event.target.value)">
+            <option [value]="" selected>All</option>
+            <option [value]="cat._id" *ngFor="let cat of allCategories">{{cat.category_name}}</option>
+        </select>
+    </div>
+    <div class="col-6 m-top-40">
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search content" aria-label="Search" (input)="searchContent($event.target.value)">
+        </form>
+    </div>
+  </div>
+  <div class="list-of-content m-top-10">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Content</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="allContents.length > 0">
+        <tr *ngFor="let con of allContents">
+          <td *ngIf="con.content">{{con.content}}</td>
+          <td *ngIf="con.file"><a (click)="goToLink(con.file)" class="file-name">{{con.file}}</a></td>
+        </tr>
+        <tr>
+      </tbody>
+      <tbody *ngIf="allContents.length == 0">
+        <tr>
+          <th>No Content Available</th>
+        </tr>
+        <tr>
+      </tbody>
+    </table>
+  </div>
+</div>

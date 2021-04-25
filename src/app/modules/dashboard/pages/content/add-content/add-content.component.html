@@ -1,0 +1,57 @@
+<div class="container">
+  <h2>Content</h2>
+  <!-- <div>
+    <div class="m-top-10">
+        <label for="exampleFormControlSelect1">Select Category</label>
+        <select class="form-control" id="exampleFormControlSelect1" (change)="onChange($event.target.value)">
+            <option [value]="" disabled>Select Category</option>
+            <option [value]="cat.category_name" *ngFor="let cat of allCategories">{{cat.category_name}}</option>
+        </select>
+    </div>
+    <div class="m-top-10">
+        <label for="comment">Content:</label>
+        <textarea class="form-control" rows="5" id="content" [(ngModel)]='content'></textarea>
+    </div>
+    <div class="col-6 m-top-10">
+      <h3>OR</h3>
+    </div>
+    <div class="custom-file m-top-10">
+        <input type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload>
+    </div>
+    <div class="m-top-10">
+        <button class="btn btn-primary login-btn mr-2" (click)="addContent()">Add</button>
+        <button class="btn btn-primary login-btn" (click)="onCancel()">Cancel</button>
+    </div>
+  </div> -->
+  <form [formGroup]="contentForm" (ngSubmit)="addContent()">
+    <div class="form-group">
+      <label for="exampleFormControlSelect1">Select Category</label>
+      <select class="form-control" id="exampleFormControlSelect1" formControlName="category">
+          <option [value]="" disabled selected>Select Category</option>
+          <option [value]="cat._id" *ngFor="let cat of allCategories">{{cat.category_name}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="comment">Content:</label>
+      <textarea formControlName="content" class="form-control" rows="5" id="content"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="file">File</label>
+        <span class="row m-left-10">
+          <input formControlName="file" id="file" type="file" class="form-control col-10" (change)="onFileChange($event)">
+          <a class="btn btn-primary login-btn mr-2 col-1 m-left-10" (click)="removeSelectedFile()">Remove</a>
+        </span>
+    </div>
+
+    <div class="errorMsg">
+      {{errMessage}}
+    </div>
+
+    <button type="submit" [disabled]="loading" class="btn btn-primary">
+      <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+      Add
+    </button>
+    <button class="btn btn-primary login-btn" (click)="onCancel()">Cancel</button>
+
+</form>
+</div>
