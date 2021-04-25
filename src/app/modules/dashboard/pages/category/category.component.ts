@@ -15,6 +15,7 @@ export class CategoryComponent implements OnInit {
   loading = false;
   submitted = false;
   allCategories: any = [];
+  errMsg: any = '';
   
   constructor(private formBuilder: FormBuilder, private categoryService: CategoryService) { }
 
@@ -22,8 +23,8 @@ export class CategoryComponent implements OnInit {
     this.categoryForm = this.formBuilder.group({
       category: new FormControl('', [Validators.required])
     });
+    this.errMsg = '';
     this.getAllCategory();
-    this.categoryForm.reset();
   }
 
   // convenience getter for easy access to form fields
@@ -34,9 +35,10 @@ export class CategoryComponent implements OnInit {
 
     // stop here if form is invalid
     if (this.categoryForm.invalid) {
+        this.errMsg = "Please enter category name!"
         return;
     }
-
+    this.errMsg = '';
     this.loading = true;
     this.categoryService.addCategory(this.f.category.value).pipe(first()).subscribe((res: any) => {
       if(res.success) {
@@ -46,12 +48,14 @@ export class CategoryComponent implements OnInit {
         this.allCategories = [res.new_category, ...this.allCategories]
       }
     },(error) => {
+        this.errMsg = 'Something went wrong please try leter!';
         this.loading = false;
     });
             
   }
 
   getAllCategory() {
+    this.errMsg = '';
     this.categoryService.getAllCategory().pipe(first()).subscribe((res: any) => {
       if(res.success) {
         this.allCategories = res.categories;

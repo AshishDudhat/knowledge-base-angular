@@ -26,7 +26,6 @@ export class ContentComponent implements OnInit {
 
   getAllContent(cat_id) {
     this.contentService.getAllContent(cat_id).pipe(first()).subscribe((res: any) => {
-      console.log("this.allContents", this.allContents);
       if(res.success) {
         this.allContents = res.contents;
       }

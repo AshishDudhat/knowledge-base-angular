@@ -5,8 +5,8 @@
 export const environment = {
   production: false,
   API_URI: "http://localhost:3000/api",
-  googleKey: "",
-  facebookKey: ""
+  googleKey: "Your google key",
+  facebookKey: "Your facebook key"
 };
 
 /*

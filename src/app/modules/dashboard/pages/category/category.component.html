@@ -4,13 +4,16 @@
       <div class="form-group m-r-10">
         <label for="category" class="p-r-10">Category Name</label>
         <input type="text" formControlName="category" class="form-control " [ngClass]="{ 'is-invalid': submitted && f.category.errors }" />
+        <div class="error-msg">
+          {{errMsg}}
+        </div>
       </div>
       <div class="form-group">
         <button [disabled]="loading" class="btn btn-primary">
             <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
             Add Category
         </button>
-    </div>
+      </div>
   </form>
 
   <div class="list-of-category">

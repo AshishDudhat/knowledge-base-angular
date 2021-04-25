@@ -8,3 +8,8 @@
 .list-of-category {
     margin-top: 25px;;
 }
+
+.error-msg{
+    color: red;
+    margin-left: 10px;
+}
